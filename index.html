@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Be My Valentine 💖</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #ffe6f0, #ffd6e8, #fff0f6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 50px 40px;
+      border-radius: 24px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(255, 105, 180, 0.25);
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      color: #e75480;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      position: relative;
+    }
+
+    button {
+      padding: 14px 34px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #yesBtn {
+      background: linear-gradient(135deg, #ff5fa2, #ff87b7);
+      color: white;
+      box-shadow: 0 8px 20px rgba(255, 95, 162, 0.4);
+    }
+
+    #yesBtn:hover {
+      transform: scale(1.08);
+    }
+
+    #noBtn {
+      background: #fff;
+      color: #ff5fa2;
+      border: 2px solid #ff5fa2;
+      position: relative;
+    }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 40px 50px;
+      border-radius: 24px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      display: none;
+      z-index: 10;
+      animation: pop 0.4s ease;
+    }
+
+    .popup h2 {
+      color: #e75480;
+      margin-bottom: 15px;
+    }
+
+    .popup p {
+      font-size: 1.1rem;
+      color: #444;
+    }
+
+    @keyframes pop {
+      from {
+        transform: translate(-50%, -50%) scale(0.7);
+        opacity: 0;
+      }
+      to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .floral {
+      position: absolute;
+      width: 120px;
+      opacity: 0.25;
+    }
+
+    .flower1 {
+      top: -30px;
+      left: -30px;
+    }
+
+    .flower2 {
+      bottom: -30px;
+      right: -30px;
+    }
+  
+
+    .float {
+      position: fixed;
+      bottom: -50px;
+      font-size: 24px;
+      animation: floatUp 8s linear infinite;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(0.8);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-110vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" class="floral flower1" />
+    <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" class="floral flower2" />
+
+    <h1>Will you be my Valentine? 💕</h1>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes 💖</button>
+      <button id="noBtn">No 🙈</button>
+    </div>
+  </div>
+
+  <div class="popup" id="popup">
+    <h2>Thank You So Much 💗</h2>
+    <p>
+      Thank you so much for always being with me.<br />
+      I will love you the most, always 💕
+    </p>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const popup = document.getElementById('popup');
+
+    noBtn.addEventListener('mouseover', moveNo);
+    noBtn.addEventListener('click', moveNo);
+
+    function moveNo() {
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+      noBtn.style.position = 'fixed';
+      noBtn.style.left = x + 'px';
+      noBtn.style.top = y + 'px';
+    }
+
+    yesBtn.addEventListener('click', () => {
+      popup.style.display = 'block';
+    });
+  </script>
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const popup = document.getElementById('popup');
+
+    noBtn.addEventListener('mouseover', moveNo);
+    noBtn.addEventListener('click', moveNo);
+
+    function moveNo() {
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+      noBtn.style.position = 'fixed';
+      noBtn.style.left = x + 'px';
+      noBtn.style.top = y + 'px';
+    }
+
+    yesBtn.addEventListener('click', () => {
+      popup.style.display = 'block';
+    });
+
+    const icons = ['💖', '💗', '💘', '🌹', '🌸'];
+
+    function createFloat() {
+      const span = document.createElement('span');
+      span.className = 'float';
+      span.innerText = icons[Math.floor(Math.random() * icons.length)];
+      span.style.left = Math.random() * 100 + 'vw';
+      span.style.animationDuration = 6 + Math.random() * 4 + 's';
+      span.style.fontSize = 20 + Math.random() * 20 + 'px';
+      document.body.appendChild(span);
+
+      setTimeout(() => {
+        span.remove();
+      }, 10000);
+    }
+
+    setInterval(createFloat, 500);
+  </script>
+</body>
+</html>
